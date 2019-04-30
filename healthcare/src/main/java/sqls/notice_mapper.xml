@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mapper가 있으면 sql 작성하는 xml --> <!-- DOCTYPE을 정의해두어야 태그들을 사용할수있음 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hn.board"> <!-- 패키지 설정 -->
+	
+	<select id="listPage" resultType="HnDto" parameterType="PageDto">
+		SELECT
+		NO_SEQ, ID, TITLE, CONTENT, REGDATE, READCOUNT
+		FROM (SELECT NO_SEQ, ID,
+		TITLE, CONTENT, REGDATE, READCOUNT,
+		ROW_NUMBER() OVER(ORDER BY NO_SEQ
+		DESC) AS RNUM
+		FROM NOTICE) MB
+		WHERE RNUM BETWEEN #{rowStart} AND
+		#{rowEnd}
+		ORDER BY NO_SEQ DESC
+	</select>
+	
+	<select id="listcount" resultType="int">
+		SELECT COUNT(NO_SEQ) FROM NOTICE WHERE NO_SEQ > 0
+	</select>
+	
+	
+	<select id="nolist" resultType="HnDto">
+		SELECT NO_SEQ, ID, TITLE,
+		CONTENT, REGDATE, READCOUNT FROM NOTICE
+		ORDER BY REGDATE DESC
+	</select>
+
+	<insert id="insertBoard" parameterType="HnDto"> <!-- parameterMap (안씀) -->
+		<!-- ? 대신에 #{}을 쓴다 -->
+		INSERT INTO NOTICE VALUES(NOTICE_SEQ.NEXTVAL, #{id}, #{title},
+		#{content}, SYSDATE,0)
+	</insert>
+
+	<select id="detailBoard" parameterType="int" resultType="HnDto">
+		SELECT
+		NO_SEQ, ID, TITLE, CONTENT, REGDATE
+		FROM NOTICE WHERE
+		NO_SEQ=#{no_seq}
+	</select>
+
+	<update id="updateBoard" parameterType="HnDto">
+		UPDATE NOTICE SET
+		TITLE=#{title}, CONTENT=#{content}
+		,REGDATE=SYSDATE WHERE	NO_SEQ=#{no_seq}
+	</update>
+
+	<delete id="delBoard" parameterType="int">
+		DELETE FROM NOTICE WHERE NO_SEQ=#{no_seq}
+	</delete>
+
+	<update id="readCount" parameterType="int">
+		UPDATE NOTICE SET READCOUNT
+		= READCOUNT+1 WHERE NO_SEQ=#{no_seq}
+	</update>
+
+</mapper>

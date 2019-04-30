@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mapper가 있으면 sql 작성하는 xml --> <!-- DOCTYPE을 정의해두어야 태그들을 사용할수있음 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hn.board"> <!-- 패키지 설정 -->
+	
+	<select id="offlist" resultType="OffDto">
+		SELECT OFF_SEQ, ID, WDATE,
+		OFF_CONTENT, REGDATE, CATEGORY, CHECKING FROM OFFBOARD
+		ORDER BY REGDATE DESC
+	</select>
+	
+	
+	<select id="offlistpage" resultType="OffDto" parameterType="PageDto">
+		SELECT OFF_SEQ, ID, WDATE, 
+ 		OFF_CONTENT, REGDATE, CATEGORY, CHECKING
+		FROM (SELECT OFF_SEQ, ID, WDATE, OFF_CONTENT, REGDATE, CATEGORY, CHECKING,
+		ROW_NUMBER() OVER(ORDER BY OFF_SEQ
+		DESC) AS RNUM
+		FROM OFFBOARD) MB
+		WHERE RNUM BETWEEN #{rowStart} AND
+		#{rowEnd}
+		ORDER BY OFF_SEQ DESC
+	</select>
+	
+	<select id="offlistcount" resultType="int">
+		SELECT COUNT(OFF_SEQ) FROM
+		OFFBOARD WHERE OFF_SEQ > 0
+	</select>
+
+	<insert id="insertOffBoard" parameterType="OffDto">
+		INSERT INTO OFFBOARD(OFF_SEQ, REGDATE, OFF_CONTENT, WDATE, ID, CATEGORY)
+		VALUES(OFFBOARD_SEQ.NEXTVAL, SYSDATE, #{off_content},
+		#{wdate} ,#{id}, #{category})
+	</insert>
+
+	<select id="detailOffBoard" parameterType="int" resultType="OffDto">
+		SELECT OFF_SEQ, ID, WDATE,
+		OFF_CONTENT, REGDATE, CATEGORY FROM OFFBOARD
+		WHERE
+		OFF_SEQ=#{off_seq}
+	</select>
+	
+	<delete id="delOffBoard" parameterType="int">
+		DELETE FROM OFFBOARD
+		WHERE
+		OFF_SEQ=#{off_seq}
+	</delete>
+	
+	<update id="yes" parameterType="int">
+		UPDATE OFFBOARD SET CHECKING='Y' WHERE OFF_SEQ=#{off_seq} 
+	</update>
+	
+	<update id="no" parameterType="int">
+		UPDATE OFFBOARD SET CHECKING='N' WHERE OFF_SEQ=#{off_seq}
+	</update>
+
+
+
+	<!-- <delete id="delOffBoard" parameterType="int"> -->
+	<!-- DELETE FROM NOTICE WHERE -->
+	<!-- NO_SEQ=#{no_seq} -->
+	<!-- </delete> -->
+
+
+</mapper>
