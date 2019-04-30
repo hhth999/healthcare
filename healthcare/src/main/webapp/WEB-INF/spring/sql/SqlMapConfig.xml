@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+<configuration>
+	<settings>
+        <setting name="jdbcTypeForNull" value="NULL"/>
+    </settings>
+    
+	<typeAliases>
+	<typeAlias type="com.hn.board.dtos.HnDto" alias="HnDto" />
+		<typeAlias type="com.hn.board.dtos.OffDto" alias="OffDto" />
+		<typeAlias type="com.hn.board.dtos.MemberDto" alias="MemberDto"/>
+		<typeAlias type="com.hn.board.dtos.PageDto" alias="PageDto" />
+	</typeAliases>
+	
+	<mappers>
+	<mapper resource="/sqls/notice_mapper.xml" />
+		<mapper resource="/sqls/Off_mapper.xml" />
+		<mapper resource="/sqls/member_mapper.xml"/>
+	</mappers>
+</configuration>
