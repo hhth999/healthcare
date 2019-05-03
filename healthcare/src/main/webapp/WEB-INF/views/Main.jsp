@@ -7,19 +7,26 @@
 <title>Healthcare Main</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
 <script type="text/javascript">
-	$(document).ready(function() {
 
-		$(document).mouseup(function (e){
+ $(document).ready(function(){
+	
 
-			var container = $("#modalLogin");
 
-			if(container.has(e.target).length === 0)
+$('body').click(function (e) {
+    if ($('#modalLogin').css('display') == 'display') {
+		console.log("display block");
+        if (!$('#modalLogin').has(e.target).length) {
+            $('#modalLogin').hide();
+        	console.log(e);
 
-			container.hide();
+        };
+    };
 
-			});
-	});
+});
+
+ });
 
 </script>
 <style type="text/css">
