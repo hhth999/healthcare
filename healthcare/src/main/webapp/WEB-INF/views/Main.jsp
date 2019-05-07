@@ -14,12 +14,20 @@
 	
 
 
-$('body').click(function (e) {
-    if ($('#modalLogin').css('display') == 'display') {
-		console.log("display block");
-        if (!$('#modalLogin').has(e.target).length) {
-            $('#modalLogin').hide();
+$("html").click(function (e) {
+	
+	
+    if ($("#modalLogin").css("display") == "block") {
+		console.log("디스플레이");
+		alert("디스플레이=블록");
+// 		$("#modalLogin").css("display","block");
+		
+		
+		//아랫부분 ! 제거하면 반대로 되긴함
+        if (!$("#loginLayer").has(e.target).length) {
         	console.log(e);
+        	alert("로그인 레이어까지 내려와서 실행");
+             $("#modalLogin").css("display","block");
 
         };
     };
@@ -59,7 +67,7 @@ $('body').click(function (e) {
 .modalLogin .loginLayer {
 	position: absolute;
 	width: 440px;
-	top: 150px;
+	top: 150px;erk
 	left: 50%;
 	margin: 0 0 0 -230px;
 	border: 10px solid #D6D6D6;
@@ -201,7 +209,7 @@ $('body').click(function (e) {
 	<a href="fboardlist.do">자유게시판</a>
 	<a href="#">질문게시판</a>
 	<a href="#">회원 컨테스트</a>
-</body>
+
 
 <!--// 모달 로그인 시작  -->
 <!--%import("filter/login.xml")-->
@@ -250,5 +258,7 @@ $('body').click(function (e) {
 		</form>
 	</div>
 </div>
-<!--//  modalLogin end -->
+</body>
+<!--//  mod
+alLogin end -->
 </html>
