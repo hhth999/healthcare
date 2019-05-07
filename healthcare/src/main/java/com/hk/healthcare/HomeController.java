@@ -28,4 +28,10 @@ public class HomeController {
 		return "Main";
 	}
 	
+	// 계정생성 창으로 이동
+		@RequestMapping(value = "/signUpPage.do", method = RequestMethod.GET)
+		public String signUpPage(Locale locale) {
+			logger.info("계정생성 창으로 이동 {}.", locale);
+			return "signUp";
+		}
 }
