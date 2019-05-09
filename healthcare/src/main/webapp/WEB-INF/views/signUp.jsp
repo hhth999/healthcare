@@ -101,7 +101,7 @@
         
         // 취소 버튼 클릭시 첫화면으로 이동
         function goFirstForm() {
-            location.href="MainForm.do";
+            location.href="home.do";
         }    
         
         // 아이디 중복체크 화면open
