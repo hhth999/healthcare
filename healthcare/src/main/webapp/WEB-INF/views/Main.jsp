@@ -195,7 +195,7 @@ $("html").click(function (e) {
 	<span> 님의 권장 칼로리</span>
 	<span><a href="#modalLogin"
 		onclick="jQuery('#modalLogin').css('display','block');">로그인 / 로그아웃</a>
-		<a href="#">마이페이지/관리자/회원가입</a></span>
+		<a href="signUpPage.do">마이페이지/관리자/회원가입</a></span>
 
 	<p>마이페이지</p>
 	<a href="#">회원정보보기</a>

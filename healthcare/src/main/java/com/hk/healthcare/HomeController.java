@@ -34,4 +34,10 @@ public class HomeController {
 			logger.info("계정생성 창으로 이동 {}.", locale);
 			return "signUp";
 		}
+		//id 중복체크 란 이동
+		@RequestMapping(value = "/IdCheckForm.do", method = RequestMethod.GET)
+		public String IdCheckForm(Locale locale) {
+			logger.info("계정생성 창으로 이동 {}.", locale);
+			return "IdCheckForm";
+		}
 }
