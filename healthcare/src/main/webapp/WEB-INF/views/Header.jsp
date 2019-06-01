@@ -64,7 +64,7 @@ a#login_pop:hover, a#join_pop:hover {
     top: 40%;
     visibility: hidden;
     z-index: 10;
-	height:500px;
+	height:600px;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -133,7 +133,9 @@ a#login_pop:hover, a#join_pop:hover {
     border-color: #999 #ccc #ccc;
     margin: 0;
     padding: 2px;
-
+    margin-top: 10px;
+    line-height:50px;
+    margin-left:30px;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     -ms-border-radius: 2px;
@@ -146,11 +148,24 @@ a#login_pop:hover, a#join_pop:hover {
 
 #label1 {
 	text-align:center;
+	padding-bottom: 20px;
 }
 
-#id {
-	font-size : medium;
+#idf, #passwordf {
+	 font-weight: bold;
+	 margin-left: 30px;
 }
+
+#passwordf {
+	margin-top: 20px;
+}
+
+#Login {
+	margin-top:50px;
+    margin-left: 80%;
+    }
+
+
 </style>
 <title>Insert title here</title>
 </head>
@@ -179,15 +194,26 @@ a#login_pop:hover, a#join_pop:hover {
         <div class="popup">
             <h2 id="label1">헬스케어 로그인</h2>
             <div>
-                <label for="id" id="id">아이디</label>
-                <input type="text" id="login" value="" />
+                <label for="id" id="idf">아이디</label>
+                <br/>
+                <input type="text" id="id" value="" size="55" placeholder="아이디를 입력하여 주십시오" />
             </div>
             <div>
-                <label for="password">비밀번호</label>
-                <input type="password" id="password" value="" />
+                <label for="password" id="passwordf">비밀번호</label>
+                <br/>
+                <input type="password" id="password" value="" size="55" placeholder="비밀번호를 입력하여 주십시오" />
             </div>
-            <input type="button" value="Log In" />
-
+            <div style="margin-top:30px;">
+            <img src="/healthcare/resources/images/KaKao.jpg" height="30px" width="30px">
+            <img src="/healthcare/resources/images/Naver.jpg" height="30px" width="30px">
+            
+            </div>
+            <input type="button" id="Login" value="로그인" />
+			
+			<div>
+			<p>아직 헬스케어 회원이 아니신가요? <a href="#">헬스케어 회원가입 하러가기</a></p>
+			<p>이메일 / 비밀번호를 까먹으셨나요? <a href="#">이메일 / 비밀번호 찾기</a></p>
+			</div>
             <a class="close" href="#close"></a>
         </div>
 
