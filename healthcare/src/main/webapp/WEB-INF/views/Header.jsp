@@ -4,6 +4,35 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+$('#Login').click(function() {
+	alert("동작");
+	var email = $('[name="email"]').val();
+	var password = $('[name="password"]').val();
+	
+	$.ajax({
+		url : "login.do",
+		data : {email : email , password : password},
+		type : "post",
+		success : function(data) {
+			var result = JSON.parse(data);
+			if (result.status == 404) {
+				console.log("로그인 성공");
+			} else {
+				alert("로그인에 실패했습니다.");
+			}
+			
+		}
+	})
+	
+	
+});
+});
+</script>
 <style type="text/css">
 .panel {
 	background-color: #444;
@@ -240,11 +269,11 @@ margin-left:50px;
 		<h2 id="label1">헬스케어 로그인</h2>
 		<div>
 
-			<input type="text" id="id" value="" size="55"
+			<input type="text" id="email" value="" size="55" name="email"
 				placeholder="아이디를 입력하여 주십시오" />
 		</div>
 		<div>
-			<input type="password" id="password" value="" size="55"
+			<input type="password" id="password" value="" size="55" name="password"
 				placeholder="비밀번호를 입력하여 주십시오" />
 		</div>
 		<div id="saveid">

@@ -13,11 +13,15 @@
 <!-- 		<typeAlias type="com.hn.board.dtos.OffDto" alias="OffDto" /> -->
 <!-- 		<typeAlias type="com.hn.board.dtos.MemberDto" alias="MemberDto"/> -->
 <!-- 		<typeAlias type="com.hn.board.dtos.PageDto" alias="PageDto" /> -->
+<typeAlias type="com.hk.healthcare.dto.user" alias="MemberDto"/>
 	</typeAliases>
 	
 	<mappers>
+<mapper resource="/sqls/login_mapper.xml" />
 <!-- 	<mapper resource="/sqls/notice_mapper.xml" /> -->
 <!-- 		<mapper resource="/sqls/Off_mapper.xml" /> -->
 <!-- 		<mapper resource="/sqls/member_mapper.xml"/> -->
 	</mappers>
+	
+	
 </configuration>
