@@ -6,8 +6,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,16 +59,17 @@ public class HomeController {
 		}
 		//로그인 컨트롤러
 		@RequestMapping(value = "login.do")
-		public String Login(HttpServletRequest request,HttpServletResponse response,Locale locale, Model model, String email, String password) throws IOException {
+		public void Login(HttpServletRequest request,HttpServletResponse response,Locale locale, Model model, String email, String password) throws IOException {
 			
 		boolean isS = loginService.Login(email, password);
 		System.out.println(email + "" + password);
-		
-
+		HttpSession session = request.getSession();
+	    session.setAttribute("loginId", email);
 		HashMap status = new HashMap();
 
 		if (isS) { 
-			status.put("status", 404); 
+			status.put("status", 404);
+			
 		} else {
 		    status.put("status", 200); 
 		}
@@ -77,7 +80,17 @@ public class HomeController {
 
 		System.out.println("Ajax 컨트롤러 요청 : " + json);
 
-		return "Header";
+		
+		}
+		
+		@RequestMapping(value = "/logOut.do", method = RequestMethod.GET)
+		public String logOut(HttpServletRequest request,HttpServletResponse response,Locale locale, Model model, String email, String password) {
+			logger.info("계정생성 창으로 이동 {}.", locale);
+			HttpSession session = request.getSession();
+			
+			session.removeAttribute("loginId");
+			
+			return "Main";
 		}
 }
 

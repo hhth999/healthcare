@@ -6,8 +6,8 @@
 
 <mapper namespace="com.hk.healthcare.login">
 
-<select id="login" resultType="int" parameterType="Map">
- SELECT count(*) FROM MEMBER WHERE EMAIL = #{email} AND PASSWORD = #{password}
+<select id="login" resultType="MemberDto" parameterType="Map">
+ SELECT * FROM MEMBER WHERE EMAIL = #{email} AND PASSWORD = #{password}
 
 </select>
  

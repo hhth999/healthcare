@@ -25,9 +25,16 @@ public boolean Login(String email, String password) {
 	 map.put("password", password);
 	 System.out.println(map);
 	 
-	 System.out.println("One" + sqlSession.selectOne(namespace + "login", map));
-	 count = sqlSession.selectOne(namespace + "login", map);
-	 return count > 0 ? true : false;
+//	 System.out.println("One" + sqlSession.selectOne(namespace + "login", map));
+//	 count = sqlSession.selectOne(namespace + "login", map);
+	 
+	 if(sqlSession.selectOne(namespace + "login", map) == null) {
+			return false;
+		} else {
+			return true;
+		}
+		
+	 
 	
 	
 	

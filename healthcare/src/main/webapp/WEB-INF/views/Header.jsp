@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,6 +10,7 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
+	
 $('#Login').click(function() {
 	alert("동작");
 	var email = $('[name="email"]').val();
@@ -21,7 +23,7 @@ $('#Login').click(function() {
 		success : function(data) {
 			var result = JSON.parse(data);
 			if (result.status == 404) {
-				console.log("로그인 성공");
+				alert("로그인에 성공했습니다.");
 			} else {
 				alert("로그인에 실패했습니다.");
 			}
@@ -30,7 +32,7 @@ $('#Login').click(function() {
 	})
 	
 	
-});
+})
 });
 </script>
 <style type="text/css">
@@ -244,10 +246,18 @@ margin-left:50px;
 <title>Insert title here</title>
 </head>
 <body>
-	<span style="font-size: 20px; font-family: 굴림;"> 헬스케어 메인화면입니다. </span>
+	<span style="font-size: 20px; font-family: 굴림;"> 헬스케어 메인화면입니다. ${loginId} </span>
 	<span>출석한 날짜 : 일 </span>
 	<span> 님의 권장 칼로리</span>
-	<span><a href="#login_form">로그인 / 로그아웃</a> <a
+	<span><c:choose>
+	 <c:when test="${loginId == null && loginId == ''}">
+<a href="#login_form"> 로그인 </a>
+</c:when>	
+
+<c:otherwise>
+<a href="logOut.do">로그아웃</a>
+</c:otherwise>
+	</c:choose></a><a
 		href="signUpPage.do">마이페이지/관리자/회원가입</a></span>
 
 	<p>마이페이지</p>
