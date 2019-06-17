@@ -24,15 +24,41 @@ $('#Login').click(function() {
 			var result = JSON.parse(data);
 			if (result.status == 404) {
 				alert("로그인에 성공했습니다.");
+				location.href="#close";
+				location.href="home.do";
 			} else {
-				alert("로그인에 실패했습니다.");
+				alert("로그인에 실패했습니다. 메일과 비밀번호를 확인하여 주십시오.");
 			}
 			
 		}
 	})
-	
-	
 })
+
+
+$('#getFlist').click(function() {
+	alert("동작");
+	
+	
+	$.ajax({
+		url : "fboardlist.do",
+		data : {},
+		type : "post",
+		success : function(data) {
+			var result = JSON.parse(data);
+			if (result.status == 404) {
+				
+				
+				location.href="needLogin.jsp";
+			} else {
+// 				alert("로그인을 하여주십시오.");
+// 				location.href="home.do#login_form";
+			location.href="#login_form";
+			}
+			
+		}
+	})
+})
+
 });
 </script>
 <style type="text/css">
@@ -250,15 +276,15 @@ margin-left:50px;
 	<span>출석한 날짜 : 일 </span>
 	<span> 님의 권장 칼로리</span>
 	<span><c:choose>
-	 <c:when test="${loginId == null && loginId == ''}">
+	 <c:when test="${loginId == null || loginId == ''}">
 <a href="#login_form"> 로그인 </a>
 </c:when>	
 
 <c:otherwise>
-<a href="logOut.do">로그아웃</a>
+<a href="logOut.do">로그아웃 </a>
 </c:otherwise>
-	</c:choose></a><a
-		href="signUpPage.do">마이페이지/관리자/회원가입</a></span>
+	</c:choose>
+	<a href="signUpPage.do">마이페이지/관리자/회원가입</a></span>
 
 	<p>마이페이지</p>
 	<a href="#">회원정보보기</a>
@@ -267,9 +293,10 @@ margin-left:50px;
 	<p>일정관리</p>
 	<a href="#">운동일정관리</a>
 	<a href="#">식단관리하기</a>
+	<a href="#">운동목표설정</a>
 
 	<p>커뮤니티</p>
-	<a href="fboardlist.do">자유게시판</a>
+	<a href="fboardlist.do" id="getFlist">자유게시판</a>
 	<a href="#">질문게시판</a>
 	<a href="#">회원 컨테스트</a>
 

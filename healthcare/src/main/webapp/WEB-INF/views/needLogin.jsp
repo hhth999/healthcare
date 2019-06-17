@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>헬스케어 자유게시판</title>
+<title>Insert title here</title>
 </head>
 <body>
-<h1 style="text-align:center;">헬스케어 자유게시판</h1>
-
-
+로그인을 하여주십시오.
 </body>
 </html>

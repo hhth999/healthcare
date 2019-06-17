@@ -64,12 +64,12 @@ public class HomeController {
 		boolean isS = loginService.Login(email, password);
 		System.out.println(email + "" + password);
 		HttpSession session = request.getSession();
-	    session.setAttribute("loginId", email);
 		HashMap status = new HashMap();
 
 		if (isS) { 
 			status.put("status", 404);
-			
+		    session.setAttribute("loginId", email);
+
 		} else {
 		    status.put("status", 200); 
 		}
@@ -85,12 +85,12 @@ public class HomeController {
 		
 		@RequestMapping(value = "/logOut.do", method = RequestMethod.GET)
 		public String logOut(HttpServletRequest request,HttpServletResponse response,Locale locale, Model model, String email, String password) {
-			logger.info("계정생성 창으로 이동 {}.", locale);
+			logger.info("로그아웃으로 이동 {}.", locale);
 			HttpSession session = request.getSession();
 			
 			session.removeAttribute("loginId");
 			
-			return "Main";
+			return "redirect:home.do";
 		}
 }
 
