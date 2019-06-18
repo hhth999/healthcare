@@ -55,10 +55,21 @@ public class FreeboardController {
 		} else {
 		    status.put("status", 200); 
 		}
-		 // 게시글의 좋아요 수를 계산해준다.
+		
 
 		String json = new Gson().toJson(status);
 		response.getWriter().write(json);
 	}
+	@RequestMapping(value = "goFboard.do")
+	public String goFboard(HttpServletRequest request,HttpServletResponse response,Locale locale, Model model) throws IOException {
 	
-}
+		return "Fboardlist";
+		
+	}
+
+	
+	
+	
+	
+	}
+

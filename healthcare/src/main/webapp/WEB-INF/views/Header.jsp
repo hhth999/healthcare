@@ -48,11 +48,11 @@ $('#getFlist').click(function() {
 			if (result.status == 404) {
 				
 				
-				location.href="needLogin.jsp";
+				location.href="goFboard.do";
 			} else {
 // 				alert("로그인을 하여주십시오.");
-// 				location.href="home.do#login_form";
-			location.href="#login_form";
+				location.href="home.do#login_form";
+// 			location.href="#login_form";
 			}
 			
 		}
@@ -296,7 +296,7 @@ margin-left:50px;
 	<a href="#">운동목표설정</a>
 
 	<p>커뮤니티</p>
-	<a href="fboardlist.do" id="getFlist">자유게시판</a>
+	<a href="#" id="getFlist">자유게시판</a>
 	<a href="#">질문게시판</a>
 	<a href="#">회원 컨테스트</a>
 
