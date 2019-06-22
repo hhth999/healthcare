@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,12 +13,15 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.google.gson.Gson;
+import com.hk.healthcare.dto.FreeboardDto;
+import com.hk.healthcare.model.FboardService;
 
 /**
  * Handles requests for the application home page.
@@ -31,6 +35,9 @@ public class FreeboardController {
 	 * Simply selects the home view to render by returning its name.
 	 * @throws IOException 
 	 */
+	@Autowired
+	private FboardService fboardService;
+	
 	@RequestMapping(value = "fboardlist.do")
 	public void list(HttpServletRequest request,HttpServletResponse response,Locale locale, Model model) throws IOException {
 	    HttpSession session = request.getSession();
@@ -63,6 +70,12 @@ public class FreeboardController {
 	@RequestMapping(value = "goFboard.do")
 	public String goFboard(HttpServletRequest request,HttpServletResponse response,Locale locale, Model model) throws IOException {
 	
+		List<FreeboardDto> list = fboardService.getAllList();
+		
+		model.addAttribute("list",list);
+		
+		
+		
 		return "Fboardlist";
 		
 	}

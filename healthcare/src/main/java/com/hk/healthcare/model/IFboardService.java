@@ -1,5 +1,9 @@
 package com.hk.healthcare.model;
 
-public interface IFboardService {
+import java.util.List;
 
+import com.hk.healthcare.dto.FreeboardDto;
+
+public interface IFboardService {
+	public List<FreeboardDto> getAllList();
 }
