@@ -5,63 +5,73 @@
 
 <mapper namespace="com.hn.board">
 
-	<insert id="insertMember" parameterType="MemberDto">
-		insert into member
-		values(#{id},#{email},#{mobile},#{password},#{name},#{admin},'' ,''
-		,'' ,#{dname},member_seq.nextval)
+<!-- 	<insert id="insertMember" parameterType="MemberDto"> -->
+<!-- 		insert into member -->
+<!-- 		values(#{id},#{email},#{mobile},#{password},#{name},#{admin},'' ,'' -->
+<!-- 		,'' ,#{dname},member_seq.nextval) -->
+<!-- 	</insert> -->
+
+<!-- 	<select id="login" parameterType="MemberDto" resultType="MemberDto"> -->
+<!-- 		SELECT * -->
+<!-- 		FROM MEMBER -->
+<!-- 		WHERE ID = #{id} AND PASSWORD = #{password} -->
+<!-- 	</select> -->
+
+<!-- 	<select id="memberList" resultType="MemberDto"> -->
+<!-- 		select seq, id, name, grade, mobile -->
+<!-- 		from member -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="detailMember" parameterType="int" resultType="MemberDto"> -->
+<!-- 		SELECT * -->
+<!-- 		FROM MEMBER -->
+<!-- 		WHERE SEQ=#{seq} -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="memberListPage" resultType="MemberDto" parameterType="PageDto"> -->
+<!-- 		SELECT SEQ, ID, NAME, GRADE, MOBILE -->
+<!-- 		FROM (SELECT SEQ, ID, NAME, GRADE, MOBILE, -->
+<!-- 		ROW_NUMBER() OVER(ORDER BY SEQ -->
+<!-- 		DESC) AS RNUM -->
+<!-- 		FROM MEMBER) MB -->
+<!-- 		WHERE RNUM BETWEEN #{rowStart} AND -->
+<!-- 		#{rowEnd} -->
+<!-- 		ORDER BY SEQ DESC -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="memberListCount" resultType="int"> -->
+<!-- 		SELECT COUNT(SEQ) FROM MEMBER WHERE SEQ > 0 -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="adminMemberListPage" resultType="MemberDto" parameterType="PageDto"> -->
+<!-- 		SELECT SEQ, ID, NAME, -->
+<!-- 		GRADE, GNUM, MOBILE, EMAIL, OFF, DNAME, ADMIN -->
+<!-- 		FROM (SEQ, ID, NAME, -->
+<!-- 		GRADE, GNUM, MOBILE, EMAIL, OFF, DNAME, ADMIN, -->
+<!-- 		ROW_NUMBER() OVER(ORDER BY SEQ -->
+<!-- 		DESC) AS RNUM -->
+<!-- 		FROM MEMBER) MB -->
+<!-- 		WHERE RNUM BETWEEN #{rowStart} AND -->
+<!-- 		#{rowEnd} -->
+<!-- 		ORDER BY SEQ DESC -->
+<!-- 	</select> -->
+
+<!-- 	<select id="adminMemberList" resultType="MemberDto"> -->
+<!-- 		select seq, id, name, -->
+<!-- 		grade, gnum, mobile, email, off, dname, admin -->
+<!-- 		from member -->
+<!-- 	</select> -->
+	
+	<select id="checkDuplication" resultType="int" parameterType="String">
+		select count(*) from member where id = #{id}
+	</select>
+	
+	<insert id="signUp" parameterType="MemberDto">
+	INSERT INTO MEMBER(NAME, EMAIL, ADDRESS, PASSWORD, BIRTH, PHONE, ID, POINT, ALERT, GENDER, ADMIN, HEIGHT,
+	WEIGHT, FAILNUM
+	) VALUES (#{name}, #{email}, #{address} , #{password} , #{birth} , #{phone} ,#{id}, #{point}, #{alert}, #{gender}, #{admin}, #{height},
+	#{weight}, #{failnum})
 	</insert>
-
-	<select id="login" parameterType="MemberDto" resultType="MemberDto">
-		SELECT *
-		FROM MEMBER
-		WHERE ID = #{id} AND PASSWORD = #{password}
-	</select>
-
-	<select id="memberList" resultType="MemberDto">
-		select seq, id, name, grade, mobile
-		from member
-	</select>
-	
-	<select id="detailMember" parameterType="int" resultType="MemberDto">
-		SELECT *
-		FROM MEMBER
-		WHERE SEQ=#{seq}
-	</select>
-	
-	<select id="memberListPage" resultType="MemberDto" parameterType="PageDto">
-		SELECT SEQ, ID, NAME, GRADE, MOBILE
-		FROM (SELECT SEQ, ID, NAME, GRADE, MOBILE,
-		ROW_NUMBER() OVER(ORDER BY SEQ
-		DESC) AS RNUM
-		FROM MEMBER) MB
-		WHERE RNUM BETWEEN #{rowStart} AND
-		#{rowEnd}
-		ORDER BY SEQ DESC
-	</select>
-	
-	<select id="memberListCount" resultType="int">
-		SELECT COUNT(SEQ) FROM MEMBER WHERE SEQ > 0
-	</select>
-	
-	<select id="adminMemberListPage" resultType="MemberDto" parameterType="PageDto">
-		SELECT SEQ, ID, NAME,
-		GRADE, GNUM, MOBILE, EMAIL, OFF, DNAME, ADMIN
-		FROM (SEQ, ID, NAME,
-		GRADE, GNUM, MOBILE, EMAIL, OFF, DNAME, ADMIN,
-		ROW_NUMBER() OVER(ORDER BY SEQ
-		DESC) AS RNUM
-		FROM MEMBER) MB
-		WHERE RNUM BETWEEN #{rowStart} AND
-		#{rowEnd}
-		ORDER BY SEQ DESC
-	</select>
-
-	<select id="adminMemberList" resultType="MemberDto">
-		select seq, id, name,
-		grade, gnum, mobile, email, off, dname, admin
-		from member
-	</select>
-	
 	
 </mapper>
 

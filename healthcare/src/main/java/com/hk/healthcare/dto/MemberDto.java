@@ -1,7 +1,7 @@
 package com.hk.healthcare.dto;
 
 public class MemberDto{
-	
+
 	private String id;
 	private String password;
     private String name;
@@ -16,23 +16,9 @@ public class MemberDto{
     private String height;
     private String weight;
     private int failnum;
+
     
-    
-    //회원가입 필수 입력
-	public MemberDto(String id, String password, String name, String phone, String address, String birth, String gender, String email,
-			String height, String weight) {
-		super();
-		this.id = id;
-		this.password = password;
-		this.name = name;
-		this.phone = phone;
-		this.address = address;
-		this.birth = birth;
-		this.gender = gender;
-		this.email = email;
-		this.height = height;
-		this.weight = weight;
-	}
+
 	
 	
 	public String getId() {
@@ -137,6 +123,26 @@ public class MemberDto{
 				+ failnum + "]";
 	}
 
+
+	public MemberDto(String id, String password, String name, String phone, String address, String birth, String gender,
+			String email, int point, String alert, String admin, String height, String weight, int failnum) {
+		super();
+		this.id = id;
+		this.password = password;
+		this.name = name;
+		this.phone = phone;
+		this.address = address;
+		this.birth = birth;
+		this.gender = gender;
+		this.email = email;
+		this.point = point;
+		this.alert = alert;
+		this.admin = admin;
+		this.height = height;
+		this.weight = weight;
+		this.failnum = failnum;
+	}
+	public MemberDto() {}
 
 	
 	

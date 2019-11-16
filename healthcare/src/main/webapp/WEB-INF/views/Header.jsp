@@ -9,6 +9,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <script type="text/javascript">
+
 	$(document).ready(function() {
 
 		$('#Login').click(function() {
@@ -282,7 +283,7 @@ div #saveid {
 				<a href="logOut.do">로그아웃 </a>
 			</c:otherwise>
 		</c:choose> <a href="signUpPage.do">마이페이지/관리자/회원가입</a></span>
-	document.getElementById("ddasd")
+	
 
 
 	<p>마이페이지</p>
@@ -305,7 +306,7 @@ div #saveid {
 		<h2 id="label1">헬스케어 로그인</h2>
 		<div>
 
-			<input type="text" id="email" value="" size="55" name="email"
+			<input type="text" id="id" value="" size="55" name="id"
 				placeholder="아이디를 입력하여 주십시오" />
 		</div>
 		<div>

@@ -1,9 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding= "UTF-8" %>
+<%
+request.setCharacterEncoding("utf-8");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>아이디 중복 체크</title>
     
     <style type="text/css">
@@ -75,27 +77,39 @@
                 httpRequest = getXMLHttpRequest();
                 httpRequest.onreadystatechange = callback;
                 httpRequest.open("POST", "MemberIdCheckAction.do", true);    
-                httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); 
+                
+                httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8'); 
                 httpRequest.send(param);
             }
         }
         
         function callback(){
             if(httpRequest.readyState == 4){
+            	alert("호출");
+            	if(httpRequest.status == 200) {
                 // 결과값을 가져온다.
-                var resultText = httpRequest.responseText;
-                if(resultText == 0){
+//                 var resultText = httpRequest.responseText;
+                
+                var resultText = httpRequest.responseText; 
+                
+                
+                console.log(resultText);
+                alert(typeof resultText);
+                if(resultText.indexOf("사용가능한") > -1){ 
+                    document.getElementById("cancelBtn").style.visibility='hidden';
+                    document.getElementById("useBtn").style.visibility='visible';
+                    document.getElementById("msg").innerHTML = "사용 가능한 아이디입니다.";
+                }
+                else{
                     alert("사용할수없는 아이디입니다.");
                     document.getElementById("cancelBtn").style.visibility='visible';
                     document.getElementById("useBtn").style.visibility='hidden';
                     document.getElementById("msg").innerHTML ="";
                 } 
-                else if(resultText == 1){ 
-                    document.getElementById("cancelBtn").style.visibility='hidden';
-                    document.getElementById("useBtn").style.visibility='visible';
-                    document.getElementById("msg").innerHTML = "사용 가능한 아이디입니다.";
-                }
+            } else {
+            	alert("서버 오류입니다. 관리자에게 문의하여 주십시오.");
             }
+           }
         }
         
         // 사용하기 클릭 시 부모창으로 값 전달 

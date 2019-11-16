@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -59,10 +58,10 @@ public class HomeController {
 		}
 		//로그인 컨트롤러
 		@RequestMapping(value = "login.do")
-		public void Login(HttpServletRequest request,HttpServletResponse response,Locale locale, Model model, String email, String password) throws IOException {
+		public void Login(HttpServletRequest request,HttpServletResponse response,Locale locale, Model model, String id, String password) throws IOException {
 			
-		boolean isS = loginService.Login(email, password);
-		System.out.println(email + "" + password);
+		boolean isS = loginService.Login(id, password);
+		System.out.println(id + "" + password);
 		HttpSession session = request.getSession();
 		HashMap status = new HashMap();
 		
@@ -70,7 +69,7 @@ public class HomeController {
 		
 		if (isS) { 
 			status.put("status", 404);
-		    session.setAttribute("loginId", email);
+		    session.setAttribute("loginId", id);
 
 		} else {
 		    status.put("status", 200); 

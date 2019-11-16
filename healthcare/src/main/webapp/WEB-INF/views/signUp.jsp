@@ -19,7 +19,8 @@
             background-color:skyblue
         }
    </style>
- 
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
     <script type="text/javascript">
     
         // 회원가입 화면의 입력값들을 검사한다.
@@ -119,6 +120,24 @@
             document.userInfo.idDuplication.value ="idUncheck";
         }
         
+       	function goSave() {
+       		
+       		
+       		var birth = "";
+       		
+       		birth += $("#birthyy").val();
+       		birth += "-";
+       		birth += $("#birthnm").val();
+       		birth += "-";
+       		birth += $("#birthdd").val();
+       	
+           $("#birth").val(birth);
+           
+           document.getElementById('frm').submit();
+
+           
+       	}
+        
    </script>
     
 </head>
@@ -174,6 +193,7 @@
                 <tr>
                     <td id="title">생일</td>
                     <td>
+                    	<input type="hidden" value="" name="birth" id="birth" />
                         <input type="text" name="birthyy" maxlength="4" placeholder="년(4자)" size="6">
                         <select name="birthmm">
                             <option value="00">월</option>
@@ -221,7 +241,7 @@
                 </tr>
             </table>
             <br>
-            <input type="submit" value="가입"/>  
+            <input type="button" value="가입" onclick="goSave()"/>  
             <input type="button" value="취소" onclick="goFirstForm()">
         </form>
  
