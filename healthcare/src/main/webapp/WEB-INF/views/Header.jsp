@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,57 +9,57 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <script type="text/javascript">
-$(document).ready(function() {
-	
-$('#Login').click(function() {
-	alert("동작");
-	var email = $('[name="email"]').val();
-	var password = $('[name="password"]').val();
-	
-	$.ajax({
-		url : "login.do",
-		data : {email : email , password : password},
-		type : "post",
-		success : function(data) {
-			var result = JSON.parse(data);
-			if (result.status == 404) {
-				alert("로그인에 성공했습니다.");
-				location.href="#close";
-				location.href="home.do";
-			} else {
-				alert("로그인에 실패했습니다. 메일과 비밀번호를 확인하여 주십시오.");
-			}
-			
-		}
-	})
-})
+	$(document).ready(function() {
 
+		$('#Login').click(function() {
+			alert("동작");
+			var email = $('[name="email"]').val();
+			var password = $('[name="password"]').val();
 
-$('#getFlist').click(function() {
-	alert("동작");
-	
-	
-	$.ajax({
-		url : "fboardlist.do",
-		data : {},
-		type : "post",
-		success : function(data) {
-			var result = JSON.parse(data);
-			if (result.status == 404) {
-				
-				
-				location.href="goFboard.do";
-			} else {
-// 				alert("로그인을 하여주십시오.");
-				location.href="home.do#login_form";
-// 			location.href="#login_form";
-			}
-			
-		}
-	})
-})
+			$.ajax({
+				url : "login.do",
+				data : {
+					email : email,
+					password : password
+				},
+				type : "post",
+				success : function(data) {
+					var result = JSON.parse(data);
+					if (result.status == 404) {
+						alert("로그인에 성공했습니다.");
+						location.href = "#close";
+						location.href = "home.do";
+					} else {
+						alert("로그인에 실패했습니다. 메일과 비밀번호를 확인하여 주십시오.");
+					}
 
-});
+				}
+			})
+		})
+
+		$('#getFlist').click(function() {
+			alert("동작");
+
+			$.ajax({
+				url : "fboardlist.do",
+				data : {},
+				type : "post",
+				success : function(data) {
+					var result = JSON.parse(data);
+					if (result.status == 404) {
+
+						location.href = "goFboard.do";
+					} else {
+						// 				alert("로그인을 하여주십시오.");
+						location.href = "home.do#login_form";
+						// 			location.href="#login_form";
+					}
+
+				}
+			})
+		})
+
+	});
 </script>
 <style type="text/css">
 .panel {
@@ -241,17 +241,17 @@ div #saveid {
 	margin-left: 27px;
 }
 
-#wrap ul li{
+#wrap ul li {
 	list-style: none;
-	display:inline-block;
-	text-align:center;
-	padding-right:10px;
+	display: inline-block;
+	text-align: center;
+	padding-right: 10px;
 }
 
-#wrap ul li + li:after {
+#wrap ul li+li:after {
 	content: "";
- 	display: inline-block; 
- 	position: absolute;
+	display: inline-block;
+	position: absolute;
 	top: 5px;
 	left: 0;
 	width: 1px;
@@ -262,29 +262,28 @@ div #saveid {
 /* #wrap .con li:last-child::after { */
 /* 	content:""; */
 /* } */
-
 .con {
-margin-left:50px;
-
+	margin-left: 50px;
 }
-
 </style>
 <title>Insert title here</title>
 </head>
 <body>
-	<span style="font-size: 20px; font-family: 굴림;"> 헬스케어 메인화면입니다. ${loginId} </span>
+	<span style="font-size: 20px; font-family: 굴림;"> 헬스케어 메인화면입니다.
+		${loginId} </span>
 	<span>출석한 날짜 : 일 </span>
 	<span> 님의 권장 칼로리</span>
 	<span><c:choose>
-	 <c:when test="${loginId == null || loginId == ''}">
-<a href="#login_form"> 로그인 </a>
-</c:when>	
+			<c:when test="${loginId == null || loginId == ''}">
+				<a href="#login_form"> 로그인 </a>
+			</c:when>
 
-<c:otherwise>
-<a href="logOut.do">로그아웃 </a>
-</c:otherwise>
-	</c:choose>
-	<a href="signUpPage.do">마이페이지/관리자/회원가입</a></span>
+			<c:otherwise>
+				<a href="logOut.do">로그아웃 </a>
+			</c:otherwise>
+		</c:choose> <a href="signUpPage.do">마이페이지/관리자/회원가입</a></span>
+	document.getElementById("ddasd")
+
 
 	<p>마이페이지</p>
 	<a href="#">회원정보보기</a>
@@ -310,8 +309,8 @@ margin-left:50px;
 				placeholder="아이디를 입력하여 주십시오" />
 		</div>
 		<div>
-			<input type="password" id="password" value="" size="55" name="password"
-				placeholder="비밀번호를 입력하여 주십시오" />
+			<input type="password" id="password" value="" size="55"
+				name="password" placeholder="비밀번호를 입력하여 주십시오" />
 		</div>
 		<div id="saveid">
 			<input type="checkbox"> 아이디 저장

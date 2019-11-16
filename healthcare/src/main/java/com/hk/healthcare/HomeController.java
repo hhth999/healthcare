@@ -65,7 +65,9 @@ public class HomeController {
 		System.out.println(email + "" + password);
 		HttpSession session = request.getSession();
 		HashMap status = new HashMap();
-
+		
+		
+		
 		if (isS) { 
 			status.put("status", 404);
 		    session.setAttribute("loginId", email);
@@ -73,7 +75,7 @@ public class HomeController {
 		} else {
 		    status.put("status", 200); 
 		}
-		 // 게시글의 좋아요 수를 계산해준다.
+		
 
 		String json = new Gson().toJson(status);
 		response.getWriter().write(json);
