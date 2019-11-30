@@ -68,9 +68,9 @@
 	
 	<insert id="signUp" parameterType="MemberDto">
 	INSERT INTO MEMBER(NAME, EMAIL, ADDRESS, PASSWORD, BIRTH, PHONE, ID, POINT, ALERT, GENDER, ADMIN, HEIGHT,
-	WEIGHT, FAILNUM
+	WEIGHT, FAILNUM, REGDATE
 	) VALUES (#{name}, #{email}, #{address} , #{password} , #{birth} , #{phone} ,#{id}, #{point}, #{alert}, #{gender}, #{admin}, #{height},
-	#{weight}, #{failnum})
+	#{weight}, #{failnum}, SYSDATE)
 	</insert>
 	
 </mapper>

@@ -25,79 +25,7 @@
     
         // 회원가입 화면의 입력값들을 검사한다.
         function checkValue()
-        {
-            var form = document.userInfo;
-        
-            if(!form.id.value){
-                alert("아이디를 입력하세요.");
-                return false;
-            }
-            
-            if(form.idDuplication.value != "idCheck"){
-                alert("아이디 중복체크를 해주세요.");
-                return false;
-            }
-            
-            if(!form.password.value){
-                alert("비밀번호를 입력하세요.");
-                return false;
-            }
-            
-            // 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
-            if(form.password.value != form.passwordcheck.value ){
-                alert("비밀번호를 동일하게 입력하세요.");
-                return false;
-            }    
-            
-            if(!form.name.value){
-                alert("이름을 입력하세요.");
-                return false;
-            }
-            
-            if(!form.birthyy.value){
-                alert("년도를 입력하세요.");
-                return false;
-            }
-            
-            if(isNaN(form.birthyy.value)){
-                alert("년도는 숫자만 입력가능합니다.");
-                return false;
-            }
-            
-            if(form.birthmm.value == "00"){
-                alert("월을 선택하세요.");
-                return false;
-            }
-            
-            if(!form.birthdd.value){
-                alert("날짜를 입력하세요.");
-                return false;
-            }
-            
-            if(isNaN(form.birthdd.value)){
-                alert("날짜는 숫자만 입력가능합니다.");
-                return false;
-            }
-            
-            if(!form.mail1.value){
-                alert("메일 주소를 입력하세요.");
-                return false;
-            }
-            
-            if(!form.phone.value){
-                alert("전화번호를 입력하세요.");
-                return false;
-            }
-            
-            if(isNaN(form.phone.value)){
-                alert("전화번호는 - 제외한 숫자만 입력해주세요.");
-                return false;
-            }
-            
-            if(!form.address.value){
-                alert("주소를 입력하세요.");
-                return false;
-            }
+     
         }
         
         // 취소 버튼 클릭시 첫화면으로 이동
@@ -121,21 +49,96 @@
         }
         
        	function goSave() {
-       		
+       	 {
+             var form = document.userInfo;
+         
+             if(!form.id.value){
+                 alert("아이디를 입력하세요.");
+                 return false;
+             }
+             
+             if(form.idDuplication.value != "idCheck"){
+                 alert("아이디 중복체크를 해주세요.");
+                 return false;
+             }
+             
+             if(!form.password.value){
+                 alert("비밀번호를 입력하세요.");
+                 return false;
+             }
+             
+             // 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
+             if(form.password.value != form.passwordcheck.value ){
+                 alert("비밀번호를 동일하게 입력하세요.");
+                 return false;
+             }    
+             
+             if(!form.name.value){
+                 alert("이름을 입력하세요.");
+                 return false;
+             }
+             
+             if(!form.birthyy.value){
+                 alert("년도를 입력하세요.");
+                 return false;
+             }
+             
+             if(isNaN(form.birthyy.value)){
+                 alert("년도는 숫자만 입력가능합니다.");
+                 return false;
+             }
+             
+             if(form.birthmm.value == "00"){
+                 alert("월을 선택하세요.");
+                 return false;
+             }
+             
+             if(!form.birthdd.value){
+                 alert("날짜를 입력하세요.");
+                 return false;
+             }
+             
+             if(isNaN(form.birthdd.value)){
+                 alert("날짜는 숫자만 입력가능합니다.");
+                 return false;
+             }
+             
+             if(!form.mail1.value){
+                 alert("메일 주소를 입력하세요.");
+                 return false;
+             }
+             
+             if(!form.phone.value){
+                 alert("전화번호를 입력하세요.");
+                 return false;
+             }
+             
+             if(isNaN(form.phone.value)){
+                 alert("전화번호는 - 제외한 숫자만 입력해주세요.");
+                 return false;
+             }
+             
+             if(!form.address.value){
+                 alert("주소를 입력하세요.");
+                 return false;
+             }
        		
        		var birth = "";
        		
-       		birth += $("#birthyy").val();
+       		birth += $("input[name=birthyy]").val();
        		birth += "-";
-       		birth += $("#birthnm").val();
+       		birth += $("select[name=birthmm]").val();
        		birth += "-";
-       		birth += $("#birthdd").val();
+       		birth += $("input[name=birthdd]").val();
        	
            $("#birth").val(birth);
            
-           document.getElementById('frm').submit();
+           document.getElementById('signUp').submit();
 
-           
+           alert("정상적으로 가입되셨습니다.");
+           location.replace("");
+
+           window.location.href="home.do";
        	}
         
    </script>
@@ -150,7 +153,7 @@
         <!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
         <!-- 값(파라미터) 전송은 POST 방식, 전송할 페이지는 JoinPro.jsp -->
         <form method="post" action="MemberJoinAction.do" 
-                name="userInfo" onsubmit="return checkValue()">
+                name="userInfo" id="signUp" onsubmit="return checkValue()">
             <table>
                 <tr>
                     <td id="title">아이디</td>

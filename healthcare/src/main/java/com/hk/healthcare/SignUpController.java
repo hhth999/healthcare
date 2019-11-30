@@ -50,11 +50,10 @@ public class SignUpController {
 		response.setContentType("text/html;charset=UTF-8");
 		boolean check = SignUpService.SignUpCheck(id);
 		System.out.println("check : " + check);
-		System.out.println(check);
 		String result = "";
-		if (check = false) {
+		if (check) {
 			result = "";
-		} else if (check = true) {
+		} else if (!check) {
 			result = "사용가능한 아이디입니다.";
 		}
 		

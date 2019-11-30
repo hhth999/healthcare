@@ -1,5 +1,7 @@
 package com.hk.healthcare.dto;
 
+import java.util.Date;
+
 public class MemberDto{
 
 	private String id;
@@ -16,7 +18,7 @@ public class MemberDto{
     private String height;
     private String weight;
     private int failnum;
-
+    private Date regdate;
     
 
 	
@@ -113,6 +115,14 @@ public class MemberDto{
 	public void setFailnum(int failnum) {
 		this.failnum = failnum;
 	}
+	
+	public Date getRegdate() {
+		return regdate;
+	}
+
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
+	}
 
 
 	@Override
@@ -120,12 +130,12 @@ public class MemberDto{
 		return "MemberDto [id=" + id + ", password=" + password + ", name=" + name + ", phone=" + phone + ", address="
 				+ address + ", birth=" + birth + ", gender=" + gender + ", email=" + email + ", point=" + point
 				+ ", alert=" + alert + ", admin=" + admin + ", height=" + height + ", weight=" + weight + ", failnum="
-				+ failnum + "]";
+				+ failnum + ", regdate=" + regdate + "]";
 	}
 
 
 	public MemberDto(String id, String password, String name, String phone, String address, String birth, String gender,
-			String email, int point, String alert, String admin, String height, String weight, int failnum) {
+			String email, int point, String alert, String admin, String height, String weight, int failnum, Date regdate) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -141,6 +151,7 @@ public class MemberDto{
 		this.height = height;
 		this.weight = weight;
 		this.failnum = failnum;
+		this.regdate = regdate;
 	}
 	public MemberDto() {}
 

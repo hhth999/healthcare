@@ -14,18 +14,21 @@
 
 		$('#Login').click(function() {
 			alert("동작");
-			var email = $('[name="email"]').val();
+			var id = $('[name="id"]').val();
 			var password = $('[name="password"]').val();
 
 			$.ajax({
 				url : "login.do",
 				data : {
-					email : email,
+					id : id,
 					password : password
 				},
 				type : "post",
 				success : function(data) {
 					var result = JSON.parse(data);
+					
+					
+					
 					if (result.status == 404) {
 						alert("로그인에 성공했습니다.");
 						location.href = "#close";
@@ -306,8 +309,7 @@ div #saveid {
 		<h2 id="label1">헬스케어 로그인</h2>
 		<div>
 
-			<input type="text" id="id" value="" size="55" name="id"
-				placeholder="아이디를 입력하여 주십시오" />
+			<input type="text" id="id" value="" size="55" name="id"	placeholder="아이디를 입력하여 주십시오" />
 		</div>
 		<div>
 			<input type="password" id="password" value="" size="55"

@@ -11,4 +11,13 @@
 
 </select>
 
+<update id="failLogin" parameterType="Map">
+ UPDATE MEMBER SET FAILNUM = FAILNUM+1 WHERE ID= #{id} 
+</update>
+
+<select id="failNum" parameterType="Map" resultType="int">
+ SELECT FAILNUM FROM MEMBER WHERE ID= #{id}
+</select>
+
+
 </mapper>

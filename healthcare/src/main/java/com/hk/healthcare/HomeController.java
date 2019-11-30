@@ -62,6 +62,7 @@ public class HomeController {
 			
 		boolean isS = loginService.Login(id, password);
 		System.out.println(id + "" + password);
+		
 		HttpSession session = request.getSession();
 		HashMap status = new HashMap();
 		
@@ -72,6 +73,9 @@ public class HomeController {
 		    session.setAttribute("loginId", id);
 
 		} else {
+			loginService.loginFail(id, password);
+			int failNum = loginService.failNum(id, password);
+			status.put("failnum", failNum);
 		    status.put("status", 200); 
 		}
 		
