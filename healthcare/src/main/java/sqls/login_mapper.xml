@@ -6,9 +6,8 @@
 
 <mapper namespace="com.hk.healthcare.login">
 
-<select id="login" resultType="MemberDto" parameterType="Map">
+<select id="login" resultType="MemberDto1" parameterType="Map">
  SELECT * FROM MEMBER WHERE ID = #{id} AND PASSWORD = #{password}
-
 </select>
 
 <update id="failLogin" parameterType="Map">
@@ -22,6 +21,10 @@
 <select id="getFailId" parameterType="String" resultType="int">
  SELECT COUNT(ID) FROM MEMBER WHERE ID= #{id}
 </select>
+
+<update id="clearFailNum" parameterType="String">
+ UPDATE MEMBER SET FAILNUM = 0 WHERE ID= #{id} AND PASSWORD = #{password}
+</update>
 
 
 </mapper>

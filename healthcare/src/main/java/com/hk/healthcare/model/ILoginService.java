@@ -7,4 +7,5 @@ public interface ILoginService {
 	public void loginFail(String id, String password);
 	public int failNum(String id, String password);
 	public boolean failGetID(String id);
+	public void clearFailNum(String id, String password);
 }

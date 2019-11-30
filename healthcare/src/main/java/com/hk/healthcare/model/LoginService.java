@@ -13,7 +13,6 @@ public class LoginService implements ILoginService {
 	
 	@Override
 	public MemberDto Login(String id, String password) {
-		
 		return ilogindao.Login(id, password);
 	}
 	
@@ -31,5 +30,12 @@ public class LoginService implements ILoginService {
 		// TODO Auto-generated method stub
 		return ilogindao.failGetID(id);
 	}
+	@Override
+	public void clearFailNum(String id, String password) {
+		// TODO Auto-generated method stub
+		ilogindao.clearFailNum(id, password);
+	}
 	
-}
+	
+	
+} //클래스 끝

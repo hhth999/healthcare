@@ -60,19 +60,20 @@ public class HomeController {
 		//로그인 컨트롤러
 		@RequestMapping(value = "login.do")
 		public void Login(HttpServletRequest request,HttpServletResponse response,Locale locale, Model model, String id, String password) throws IOException {
+
+		boolean idNullCheck = loginService.failGetID(id);
 		
 		//로그인
 		boolean isS = false;
 		MemberDto member = loginService.Login(id, password);
 		
-		if(member == null && loginService.failNum(id, password) >= 5) {
+		if(member == null) {
 			isS = false;
 		} else {
 			isS = true;
 		}
 		
 		//로그인 실패시 결과값이 널값인지 체크하기 위함.		
-		boolean idNullCheck = loginService.failGetID(id);
 		
 		
 		HttpSession session = request.getSession();
@@ -81,6 +82,7 @@ public class HomeController {
 		
 		if (isS) { 
 			status.put("status", 404);
+			loginService.clearFailNum(id, password);
 		    session.setAttribute("loginId", id);
 
 		} else {

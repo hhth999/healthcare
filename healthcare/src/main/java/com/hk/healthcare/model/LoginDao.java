@@ -34,7 +34,8 @@ public class LoginDao implements ILoginDao {
 		if (sqlSession.selectOne(namespace + "login", map) == null) {
 			return null;
 		} else {
-			return sqlSession.selectOne(namespace + "login", map);
+			MemberDto member = sqlSession.selectOne(namespace + "login", map);
+			return member;
 		}
 
 	}
@@ -73,5 +74,14 @@ public class LoginDao implements ILoginDao {
 
 	}
 	
+	@Override
+	public void clearFailNum(String id, String password) {
+		// TODO Auto-generated method stub
+		Map map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("password", password);
+		
+		sqlSession.update(namespace + "clearFailNum", map);
+	}
 
 } // Class 끝
