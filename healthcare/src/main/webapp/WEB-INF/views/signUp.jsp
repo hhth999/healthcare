@@ -24,9 +24,9 @@
     <script type="text/javascript">
     
         // 회원가입 화면의 입력값들을 검사한다.
-        function checkValue()
+//         function checkValue() {
      
-        }
+//         }
         
         // 취소 버튼 클릭시 첫화면으로 이동
         function goFirstForm() {
@@ -49,7 +49,7 @@
         }
         
        	function goSave() {
-       	 {
+       	 
              var form = document.userInfo;
          
              if(!form.id.value){

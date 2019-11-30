@@ -19,5 +19,9 @@
  SELECT FAILNUM FROM MEMBER WHERE ID= #{id}
 </select>
 
+<select id="getFailId" parameterType="String" resultType="int">
+ SELECT COUNT(ID) FROM MEMBER WHERE ID= #{id}
+</select>
+
 
 </mapper>

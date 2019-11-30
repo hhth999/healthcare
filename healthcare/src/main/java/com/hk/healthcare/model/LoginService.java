@@ -3,6 +3,8 @@ package com.hk.healthcare.model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hk.healthcare.dto.MemberDto;
+
 @Repository
 public class LoginService implements ILoginService {
 	
@@ -10,7 +12,7 @@ public class LoginService implements ILoginService {
 	private ILoginDao ilogindao;
 	
 	@Override
-	public boolean Login(String id, String password) {
+	public MemberDto Login(String id, String password) {
 		
 		return ilogindao.Login(id, password);
 	}
@@ -23,6 +25,11 @@ public class LoginService implements ILoginService {
 	public int failNum(String id, String password) {
 		// TODO Auto-generated method stub
 		return ilogindao.failNum(id, password);
+	}
+	@Override
+	public boolean failGetID(String id) {
+		// TODO Auto-generated method stub
+		return ilogindao.failGetID(id);
 	}
 	
 }

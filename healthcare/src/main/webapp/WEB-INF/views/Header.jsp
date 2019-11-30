@@ -13,10 +13,13 @@
 	$(document).ready(function() {
 
 		$('#Login').click(function() {
-			alert("동작");
+			
+			
 			var id = $('[name="id"]').val();
 			var password = $('[name="password"]').val();
 
+			
+			if(id != "" && password != "") {
 			$.ajax({
 				url : "login.do",
 				data : {
@@ -27,20 +30,26 @@
 				success : function(data) {
 					var result = JSON.parse(data);
 					
-					
+					console.log(result.status);
 					
 					if (result.status == 404) {
 						alert("로그인에 성공했습니다.");
 						location.href = "#close";
 						location.href = "home.do";
-					} else {
+					} else if(result.status == 200 ){
 						alert("로그인에 실패했습니다. 메일과 비밀번호를 확인하여 주십시오.");
+					} else if(result.status == 303) {
+						alert("로그인을 5회이상 실패하여 로그인을 할 수 없습니다.");
 					}
 
 				}
 			})
+			} else {
+				alert("아이디와 비밀번호를 입력해주세요.");
+				return;
+			} 
 		})
-
+		
 		$('#getFlist').click(function() {
 			alert("동작");
 

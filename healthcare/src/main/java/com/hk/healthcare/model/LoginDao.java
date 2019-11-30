@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.hk.healthcare.dto.MemberDto;
+
 @Repository
 public class LoginDao implements ILoginDao {
 
@@ -17,10 +19,10 @@ public class LoginDao implements ILoginDao {
 
 	// 로그인
 	@Override
-	public boolean Login(String id, String password) {
+	public MemberDto Login(String id, String password) {
 		int count = 0;
 		Map<String, String> map = new HashMap<String, String>();
-
+		
 		System.out.println("Dao에서의 email, password" + id + "" + password);
 		map.put("id", id);
 		map.put("password", password);
@@ -30,9 +32,9 @@ public class LoginDao implements ILoginDao {
 		// count = sqlSession.selectOne(namespace + "login", map);
 
 		if (sqlSession.selectOne(namespace + "login", map) == null) {
-			return false;
+			return null;
 		} else {
-			return true;
+			return sqlSession.selectOne(namespace + "login", map);
 		}
 
 	}
@@ -58,5 +60,18 @@ public class LoginDao implements ILoginDao {
 		
 		return failNum;
 	}
+	//로그인 실패시 아이디가 있는지 확인한 후에 failnum을 증가시키기 위함.
+	@Override
+	public boolean failGetID(String id) {
+		int get = sqlSession.selectOne(namespace + "getFailId", id ); 
+		
+		if(get == 0 ) {
+			return false;
+		} else {
+			return true;
+		}
+
+	}
+	
 
 } // Class 끝

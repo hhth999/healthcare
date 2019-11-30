@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.google.gson.Gson;
+import com.hk.healthcare.dto.MemberDto;
 import com.hk.healthcare.model.LoginService;
 
 /**
@@ -59,13 +60,23 @@ public class HomeController {
 		//로그인 컨트롤러
 		@RequestMapping(value = "login.do")
 		public void Login(HttpServletRequest request,HttpServletResponse response,Locale locale, Model model, String id, String password) throws IOException {
-			
-		boolean isS = loginService.Login(id, password);
-		System.out.println(id + "" + password);
+		
+		//로그인
+		boolean isS = false;
+		MemberDto member = loginService.Login(id, password);
+		
+		if(member == null && loginService.failNum(id, password) >= 5) {
+			isS = false;
+		} else {
+			isS = true;
+		}
+		
+		//로그인 실패시 결과값이 널값인지 체크하기 위함.		
+		boolean idNullCheck = loginService.failGetID(id);
+		
 		
 		HttpSession session = request.getSession();
 		HashMap status = new HashMap();
-		
 		
 		
 		if (isS) { 
@@ -73,17 +84,26 @@ public class HomeController {
 		    session.setAttribute("loginId", id);
 
 		} else {
-			loginService.loginFail(id, password);
-			int failNum = loginService.failNum(id, password);
-			status.put("failnum", failNum);
+			if(idNullCheck) {
+				loginService.loginFail(id, password);
+				int failNum = loginService.failNum(id, password);
+				status.put("failnum", failNum);
+			}
 		    status.put("status", 200); 
 		}
 		
+		if(idNullCheck) {
+			if(loginService.failNum(id, password) >= 5) {
+				status.put("status", 303);
+				String json = new Gson().toJson(status);
+				response.getWriter().write(json);
+				return;				
+			}
+		}
 
 		String json = new Gson().toJson(status);
 		response.getWriter().write(json);
 
-		System.out.println("Ajax 컨트롤러 요청 : " + json);
 
 		
 		}
