@@ -8,4 +8,8 @@ public interface ILoginService {
 	public int failNum(String id, String password);
 	public boolean failGetID(String id);
 	public void clearFailNum(String id, String password);
+	public boolean checkIdEmail(String id, String email);
+	public void passClear(String id, String email, StringBuffer password);
+	
+
 }

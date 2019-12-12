@@ -2,8 +2,11 @@
 <%request.setCharacterEncoding("utf-8");%>
 <%response.setContentType("text/html; charset=utf-8");%>
 <!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  <title>회원가입 화면</title>
- 
+ </head>
     <style type="text/css">
         table{
             margin-left:auto; 
@@ -19,6 +22,7 @@
             background-color:skyblue
         }
    </style>
+  
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
     <script type="text/javascript">
@@ -130,7 +134,15 @@
        		birth += $("select[name=birthmm]").val();
        		birth += "-";
        		birth += $("input[name=birthdd]").val();
-       	
+       		
+       		var email = "";
+       		
+       		email += $("#mail1").val();
+       		email += "@";
+       		email += $("#mail2").val();
+       		
+       	   $("#email").val(email);
+       		
            $("#birth").val(birth);
            
            document.getElementById('signUp').submit();
@@ -143,7 +155,7 @@
         
    </script>
     
-</head>
+
 <body>
         <br><br>
         <b><font size="6" color="gray">회원가입</font></b>
@@ -158,9 +170,10 @@
                 <tr>
                     <td id="title">아이디</td>
                     <td>
-                        <input type="text" name="id" maxlength="50" onkeydown="inputIdChk()">
-                        <input type="button" value="중복확인" onclick="openIdChk()">    
-                        <input type="hidden" name="idDuplication" value="idUncheck" >
+                        <input type="text" name="id" maxlength="50" onkeydown="inputIdChk()"/>
+                        <input type="button" value="중복확인" onclick="openIdChk()"/>    
+                        <input type="hidden" name="idDuplication" value="idUncheck" />
+                        <input type="hidden" id="email" name="email" value="" />
                     </td>
                 </tr>
                         
@@ -220,8 +233,8 @@
                 <tr>
                     <td id="title">이메일</td>
                     <td>
-                        <input type="text" name="mail1" maxlength="50">@
-                        <select name="mail2">
+                        <input type="text" name="mail1" id="mail1" maxlength="50" >@
+                        <select name="mail2" id="mail2">
                             <option>naver.com</option>
                             <option>daum.net</option>
                             <option>gmail.com</option>

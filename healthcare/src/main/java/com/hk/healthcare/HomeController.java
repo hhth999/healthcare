@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.hk.healthcare.dto.MemberDto;
@@ -119,6 +121,85 @@ public class HomeController {
 			
 			return "redirect:home.do";
 		}
-}
+		
+		@RequestMapping(value = "/getPassword.do", method = RequestMethod.GET)
+		public String getPassword(HttpServletRequest request,HttpServletResponse response,Locale locale, Model model) {
+			logger.info("비밀번호 찾기화면 이동 {}.", locale);
+			
+			
+			return "/login/password/getPassword";
+		}
+		
+		@RequestMapping(value = "/nextGetPassword.do", method = RequestMethod.GET)
+		public String nextGetPassword(HttpServletRequest request,HttpServletResponse response,Locale locale, Model model) {
+			logger.info("비밀번호 찾기 다음화면으로 이동 {}.", locale);
+			
+			
+			return "/login/password/nextGetPassword";
+		}
+		
+		@RequestMapping(value = "/checkIdEmail.do", method = RequestMethod.POST)
+		public @ResponseBody void checkIdEmail(HttpServletRequest request,HttpServletResponse response,Locale locale, Model model,String email, String id) throws IOException {
+			logger.info("비밀번호 찾기 다음화면으로 이동 {}.", locale);
+			
+			boolean check = loginService.checkIdEmail(id, email);
+			HashMap status = new HashMap();
+
+			if(check) {
+				status.put("status", "checksuccess");
+			} else {
+				status.put("status", "checkfail");
+			}
+			
+			String json = new Gson().toJson(status);
+			response.getWriter().write(json);
+
+			
+		}
+		
+		@RequestMapping(value = "/passClearAndSendEmail.do", method = RequestMethod.POST)
+		public @ResponseBody void passClearAndSendEmail(HttpServletRequest request,HttpServletResponse response,Locale locale, Model model,String email, String id) throws IOException {
+			logger.info("비밀번호 찾기 다음화면으로 이동 {}.", locale);
+			
+			StringBuffer password = new StringBuffer();
+			Random rnd = new Random();
+			for (int i = 0; i < 20; i++) {
+			    int rIndex = rnd.nextInt(3);
+			    switch (rIndex) {
+			    case 0:
+			        // a-z
+			        password.append((char) ((int) (rnd.nextInt(26)) + 97));
+			        break;
+			    case 1:
+			        // A-Z
+			        password.append((char) ((int) (rnd.nextInt(26)) + 65));
+			        break;
+			    case 2:
+			        // 0-9
+			        password.append((rnd.nextInt(10)));
+			        break;
+			    }
+			}
+			try {
+				loginService.passClear(id, email, password);	
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			HashMap status = new HashMap();
+
+			
+			
+			String json = new Gson().toJson(status);
+			response.getWriter().write(json);
+
+			
+		}
+		
+		
+		
+		
+		
+} //클래스 끝
 
 

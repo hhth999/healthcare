@@ -36,6 +36,18 @@ public class LoginService implements ILoginService {
 		ilogindao.clearFailNum(id, password);
 	}
 	
+	@Override
+	public boolean checkIdEmail(String id, String email) {
+		// TODO Auto-generated method stub
+		return ilogindao.checkIdEmail(id, email);
+	}
+	
+	@Override
+	public void passClear(String id, String email, StringBuffer password) {
+		// TODO Auto-generated method stub
+		ilogindao.passClear(id, email, password);
+	}
+	
 	
 	
 } //클래스 끝

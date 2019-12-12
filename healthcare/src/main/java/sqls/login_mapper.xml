@@ -26,5 +26,13 @@
  UPDATE MEMBER SET FAILNUM = 0 WHERE ID= #{id} AND PASSWORD = #{password}
 </update>
 
+<select id="checkEmailId" parameterType="String" resultType="int">
+ SELECT COUNT(*) FROM MEMBER WHERE ID= #{id} AND EMAIL = #{email}
+</select>
+
+<update id="passClear" parameterType="Map">
+UPDATE HEALTHCARE."MEMBER" SET PASSWORD = #{password} WHERE ID = #{id} AND EMAIL = #{email}
+</update>
+	
 
 </mapper>

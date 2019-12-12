@@ -332,9 +332,9 @@ div #saveid {
 
 		<div id="wrap">
 			<ul class="con">
-				<li><a href="#"><span>아이디 찾기</span></a></li>
-				<li><a href="#"><span>비밀번호 찾기</span></a></li>
-				<li><a href="#"><span>회원가입</span></a></li>
+				<li><a href=""><span>아이디 찾기</span></a></li>
+				<li><a href="getPassword.do"><span>비밀번호 찾기</span></a></li>
+				<li><a href="signUppage.do"><span>회원가입</span></a></li>
 			</ul>
 		</div>
 		<a class="close" href="#close"></a>

@@ -83,5 +83,36 @@ public class LoginDao implements ILoginDao {
 		
 		sqlSession.update(namespace + "clearFailNum", map);
 	}
+	
+	@Override
+	public boolean checkIdEmail(String id, String email) {
+		// TODO Auto-generated method stub
+		Map map = new HashMap<String, String>();
+		
+		map.put("id", id);
+		map.put("email", email);
+		int count = sqlSession.selectOne(namespace + "checkEmailId", map);
+		
+		if(count == 0) {
+			return false;
+		} else {
+			return true;
+		}
+		
+		
+	}
+	
+	@Override
+	public void passClear(String id, String email, StringBuffer password) {
+
+	 Map map = new HashMap<String, String>();
+	 
+	 map.put("id", id);
+	 map.put("email", email);
+	 map.put("password", password);
+		
+	 sqlSession
+	 
+	}
 
 } // Class 끝
