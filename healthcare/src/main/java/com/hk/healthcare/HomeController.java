@@ -62,7 +62,8 @@ public class HomeController {
 		//로그인 컨트롤러
 		@RequestMapping(value = "login.do")
 		public void Login(HttpServletRequest request,HttpServletResponse response,Locale locale, Model model, String id, String password) throws IOException {
-
+		
+		//로그인 실패시 결과값이 널값인지 체크하기 위함.	
 		boolean idNullCheck = loginService.failGetID(id);
 		
 		//로그인
