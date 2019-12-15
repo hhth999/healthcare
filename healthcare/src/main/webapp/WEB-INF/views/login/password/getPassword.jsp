@@ -53,8 +53,9 @@ $(document).ready(function() {
 				var result = JSON.parse(data);
 
 				if (result.status == "checksuccess") {
-					location.href="passClearAndSendEmail.do?id="+id+"email="+email;
+					location.href="passClearAndSendEmail.do?id="+id+"&email="+email;
 					
+					//location.href="nextGetPassword.do";
 					
 				} else if(result.status == "checkfail") {
 					var html = "<h6 id='text'>등록된 아이디와 이메일을 조회할 수 없습니다.<h6>";

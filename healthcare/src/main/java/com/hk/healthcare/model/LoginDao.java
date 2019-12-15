@@ -74,6 +74,7 @@ public class LoginDao implements ILoginDao {
 
 	}
 	
+	//로그인 성공시 FailNum 0으로 초기화
 	@Override
 	public void clearFailNum(String id, String password) {
 		// TODO Auto-generated method stub
@@ -101,17 +102,18 @@ public class LoginDao implements ILoginDao {
 		
 		
 	}
-	
+	//비밀번호 찾기 시 비밀번호 재설정
 	@Override
 	public void passClear(String id, String email, StringBuffer password) {
 
 	 Map map = new HashMap<String, String>();
+	 String password2 = password.toString();
 	 
 	 map.put("id", id);
 	 map.put("email", email);
-	 map.put("password", password);
+	 map.put("password", password2);
 		
-	 sqlSession
+	 sqlSession.update(namespace + "passClear", map);
 	 
 	}
 

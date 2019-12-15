@@ -60,12 +60,9 @@
 				success : function(data) {
 					var result = JSON.parse(data);
 					if (result.status == 404) {
-
 						location.href = "goFboard.do";
 					} else {
-						// 				alert("로그인을 하여주십시오.");
 						location.href = "home.do#login_form";
-						// 			location.href="#login_form";
 					}
 
 				}
